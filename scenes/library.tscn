@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cti4fkruwyqkm"]
+
+[ext_resource type="PackedScene" uid="uid://cm06b72cjk5pw" path="res://blender/library.blend" id="1_0cqvf"]
+
+[node name="library" instance=ExtResource("1_0cqvf")]

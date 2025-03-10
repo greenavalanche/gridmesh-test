@@ -1,8 +1,8 @@
 extends RemoteTransform3D
 
 @export var INPUT_DEADZONE: float = 0.1
-@export var MOVE_FACTOR: float = -10.0
-@export var ROTATION_FACTOR: float = 10.0
+@export var MOVE_FACTOR: float = 10.0
+@export var ROTATION_FACTOR: float = 3.0
 @export_group("Zoom")
 @export var ZOOM_FACTOR: float = 5.0
 @export var ZOOM_MIN: float = 0.5
