@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwwpn3lxnp6yb"]
+
+[ext_resource type="PackedScene" uid="uid://jrobujtuy1pb" path="res://blender/house.blend" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://bq4gksq3ftoer" path="res://scripts/viewer.gd" id="1_e2o6t"]
+
+[node name="Game" type="Node3D"]
+
+[node name="Viewer" type="RemoteTransform3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.605, 0, 0)
+remote_path = NodePath("Camera3D")
+script = ExtResource("1_e2o6t")
+
+[node name="Camera3D" type="Camera3D" parent="Viewer"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 5)
+current = true
+size = 5.0
+
+[node name="house" parent="." instance=ExtResource("1_80nbo")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0.605, 8, 0)
+shadow_enabled = true
