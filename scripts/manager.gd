@@ -22,8 +22,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	time += delta
-	print(time)
-	print(get_day())
 
 func _get_days(_t=null) -> int:
 	var t = _t if _t != null else time
