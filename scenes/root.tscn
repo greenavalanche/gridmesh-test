@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvvln5kh0hp8t"]
+
+[ext_resource type="Script" uid="uid://c5oocnpudlvhe" path="res://scripts/manager.gd" id="1_sqa0i"]
+[ext_resource type="PackedScene" uid="uid://bwwpn3lxnp6yb" path="res://scenes/game.tscn" id="2_jh1ax"]
+[ext_resource type="Script" uid="uid://b2utpgqq51w1f" path="res://scripts/stats.gd" id="3_kycxp"]
+[ext_resource type="Theme" uid="uid://dpiqbwijqsu3y" path="res://assets/ui_root.tres" id="4_j287u"]
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1060.0
+offset_bottom = -711.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Manager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_sqa0i")
+
+[node name="Game" parent="." instance=ExtResource("2_jh1ax")]
+
+[node name="Stats" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_kycxp")
+
+[node name="Day" type="Label" parent="Stats"]
+offset_top = 12.0
+offset_right = 271.0
+offset_bottom = 51.0
+theme = ExtResource("4_j287u")
+text = "Day"
+
+[node name="Time" type="Label" parent="Stats"]
+offset_top = 57.0
+offset_right = 271.0
+offset_bottom = 96.0
+theme = ExtResource("4_j287u")
+text = "Time"

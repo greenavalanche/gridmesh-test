@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dpiqbwijqsu3y"]
+
+[ext_resource type="FontFile" uid="uid://60ohecit78cd" path="res://assets/NovaSquare-Regular.ttf" id="1_tpnds"]
+
+[resource]
+default_font = ExtResource("1_tpnds")
+default_font_size = 32
