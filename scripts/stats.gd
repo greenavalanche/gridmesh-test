@@ -14,4 +14,4 @@ func _process(delta: float) -> void:
 	var t = manager.get_time()
 	time.text = "Time: " + t.string()
 	cursor_pos.text = "Pos: " + str(manager.get_position())
-	tile.text = "Tile :" + str(manager.get_tile())
+	tile.text = "Tile: " + str(manager.get_tile())
