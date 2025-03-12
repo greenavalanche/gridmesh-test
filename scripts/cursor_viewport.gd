@@ -12,7 +12,7 @@ func _ready():
 	_camera.cull_mask = canvas_cull_mask
 	#_camera.current = true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update_camera()
 
 func update_camera():

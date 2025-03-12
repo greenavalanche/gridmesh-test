@@ -9,7 +9,7 @@ extends CanvasLayer
 
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	day.text = "Day " + str(manager.get_day())
 	var t = manager.get_time()
 	time.text = "Time: " + t.string()

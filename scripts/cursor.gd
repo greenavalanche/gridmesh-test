@@ -11,7 +11,7 @@ var previous_grid_position: Vector3i
 func _ready() -> void:
 	update_position(true)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update_position()
 
 func update_position(force_emit: bool = false):
