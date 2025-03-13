@@ -45,5 +45,8 @@ func get_time() -> GameTime:
 func get_tile():
 	return game.selected_tile
 
+func get_tile_name():
+	return game.selected_tile_name
+
 func get_position():
 	return game.selected_position

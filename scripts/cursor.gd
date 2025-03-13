@@ -23,3 +23,6 @@ func update_position(force_emit: bool = false):
 
 func get_tile(_grid_position: Vector3i):
 	return map.get_cell_item(_grid_position)
+
+func get_tile_name(tile_index: int):
+	return map.mesh_library.get_item_name(tile_index)

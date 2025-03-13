@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var time: Label = $VBoxContainer/Time
 @onready var cursor_pos: Label = $VBoxContainer/CursorPos
 @onready var tile: Label = $VBoxContainer/Tile
+@onready var tile_name: Label = $VBoxContainer/TileName
 
 
 
@@ -15,3 +16,4 @@ func _process(_delta: float) -> void:
 	time.text = "Time: " + t.string()
 	cursor_pos.text = "Pos: " + str(manager.get_position())
 	tile.text = "Tile: " + str(manager.get_tile())
+	tile_name.text = "TileName: " + manager.get_tile_name()
