@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://3e3nh0o6nphm"]
+
+[ext_resource type="PackedScene" uid="uid://6c5pd6mrxqjc" path="res://blender/library2.blend" id="1_fglyk"]
+
+[node name="library2" instance=ExtResource("1_fglyk")]
+
+[node name="Point" parent="." index="1"]
+visible = false
+
+[node name="Sun" parent="." index="2"]
+visible = false
