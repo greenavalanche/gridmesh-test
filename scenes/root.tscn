@@ -60,3 +60,9 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("4_j287u")
 text = "SelectedTileName"
+
+[node name="TerrainName" type="Label" parent="Stats/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("4_j287u")
+text = "TerrainName"

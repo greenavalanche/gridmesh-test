@@ -41,12 +41,3 @@ func get_time() -> GameTime:
 	var hour = int(daytime / HOUR_LENGTH)
 	var minute = (daytime - hour * HOUR_LENGTH) / MINUTE_LENGTH
 	return GameTime.new(hour, minute)
-
-func get_tile():
-	return game.selected_tile
-
-func get_tile_name():
-	return game.selected_tile_name
-
-func get_position():
-	return game.selected_position

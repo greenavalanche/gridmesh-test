@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwwpn3lxnp6yb"]
+[gd_scene load_steps=9 format=3 uid="uid://bwwpn3lxnp6yb"]
 
 [ext_resource type="Script" uid="uid://bq4gksq3ftoer" path="res://scripts/viewer.gd" id="1_lnu2h"]
 [ext_resource type="Script" uid="uid://ds2rh107vworh" path="res://scripts/game.gd" id="1_u5sy4"]
-[ext_resource type="PackedScene" uid="uid://jrobujtuy1pb" path="res://blender/house.blend" id="2_lbhrr"]
 [ext_resource type="MeshLibrary" uid="uid://t6hthv6x6pfc" path="res://assets/library.tres" id="3_iywne"]
 [ext_resource type="Script" uid="uid://c81xybdskcbk" path="res://scripts/cursor.gd" id="3_p57ef"]
 [ext_resource type="Shader" uid="uid://bkursefjrnxxu" path="res://shaders/cursor.gdshader" id="4_lbhrr"]
@@ -33,9 +32,6 @@ transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 5)
 cull_mask = 1047553
 current = true
 size = 5.0
-
-[node name="house" parent="." instance=ExtResource("2_lbhrr")]
-visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0.605, 8, 0)
