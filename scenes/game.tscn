@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwwpn3lxnp6yb"]
+[gd_scene load_steps=13 format=3 uid="uid://bwwpn3lxnp6yb"]
 
 [ext_resource type="Script" uid="uid://bq4gksq3ftoer" path="res://scripts/viewer.gd" id="1_lnu2h"]
 [ext_resource type="Script" uid="uid://ds2rh107vworh" path="res://scripts/game.gd" id="1_u5sy4"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://c81xybdskcbk" path="res://scripts/cursor.gd" id="3_p57ef"]
 [ext_resource type="Shader" uid="uid://bkursefjrnxxu" path="res://shaders/cursor.gdshader" id="4_lbhrr"]
 [ext_resource type="Script" uid="uid://ct53yaqlb2t0q" path="res://scripts/cursor_viewport.gd" id="4_p57ef"]
+[ext_resource type="Shader" uid="uid://cvm7k38c2j13t" path="res://shaders/saturation.gdshader" id="8_0tnpc"]
+[ext_resource type="Script" uid="uid://bcjlo4s5aj1px" path="res://scripts/post_processing_display.gd" id="8_gee14"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p57ef"]
 render_priority = 0
@@ -18,12 +20,21 @@ shader_parameter/edge_width = 0.1
 material = SubResource("ShaderMaterial_p57ef")
 orientation = 1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5sy4"]
+shader = ExtResource("8_0tnpc")
+shader_parameter/camera_projection = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/camera_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/GROUND_HEIGHT = 0.0
+shader_parameter/OPACITY = 0.33
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_p57ef"]
+viewport_path = NodePath("PostProcessingViewportContainer/PostProcessingViewport")
+
 [node name="Game" type="Node3D"]
 script = ExtResource("1_u5sy4")
 
 [node name="Viewer" type="RemoteTransform3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.605, 0, 0)
 remote_path = NodePath("Camera3D")
 script = ExtResource("1_lnu2h")
 
@@ -68,3 +79,24 @@ sorting_offset = 10.0
 mesh = SubResource("QuadMesh_p57ef")
 skeleton = NodePath("../../..")
 script = ExtResource("3_p57ef")
+
+[node name="PostProcessingViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PostProcessingViewport" type="SubViewport" parent="PostProcessingViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4294966273
+render_target_update_mode = 4
+script = ExtResource("4_p57ef")
+
+[node name="PostProcessing" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_u5sy4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_p57ef")
+script = ExtResource("8_gee14")
