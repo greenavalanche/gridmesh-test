@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvvln5kh0hp8t"]
+[gd_scene load_steps=6 format=3 uid="uid://cvvln5kh0hp8t"]
 
 [ext_resource type="Script" uid="uid://c5oocnpudlvhe" path="res://scripts/manager.gd" id="1_sqa0i"]
 [ext_resource type="PackedScene" uid="uid://bwwpn3lxnp6yb" path="res://scenes/game.tscn" id="2_jh1ax"]
 [ext_resource type="Script" uid="uid://b2utpgqq51w1f" path="res://scripts/stats.gd" id="3_kycxp"]
 [ext_resource type="Theme" uid="uid://dpiqbwijqsu3y" path="res://assets/ui_root.tres" id="4_j287u"]
+[ext_resource type="Script" uid="uid://bvd5h8qtmqorl" path="res://scripts/map_rect.gd" id="5_jh1ax"]
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -27,8 +28,10 @@ unique_name_in_owner = true
 script = ExtResource("3_kycxp")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Stats"]
-offset_right = 183.0
-offset_bottom = 181.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 274.0
+offset_bottom = 262.0
 size_flags_horizontal = 0
 
 [node name="Day" type="Label" parent="Stats/VBoxContainer"]
@@ -66,3 +69,13 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("4_j287u")
 text = "TerrainName"
+
+[node name="MapRect" type="TextureRect" parent="Stats"]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -393.0
+offset_bottom = 345.0
+grow_horizontal = 0
+script = ExtResource("5_jh1ax")

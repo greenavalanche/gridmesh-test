@@ -1,17 +1,45 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwwpn3lxnp6yb"]
+[gd_scene load_steps=19 format=3 uid="uid://bwwpn3lxnp6yb"]
 
 [ext_resource type="Script" uid="uid://bq4gksq3ftoer" path="res://scripts/viewer.gd" id="1_lnu2h"]
 [ext_resource type="Script" uid="uid://ds2rh107vworh" path="res://scripts/game.gd" id="1_u5sy4"]
+[ext_resource type="Script" uid="uid://b6k5v1kpilugu" path="res://scripts/display_camera.gd" id="2_gee14"]
+[ext_resource type="Script" uid="uid://20sqr4rv1ivq" path="res://scripts/main_viewport.gd" id="2_u5sy4"]
 [ext_resource type="MeshLibrary" uid="uid://t6hthv6x6pfc" path="res://assets/library.tres" id="3_iywne"]
 [ext_resource type="Script" uid="uid://c81xybdskcbk" path="res://scripts/cursor.gd" id="3_p57ef"]
+[ext_resource type="Shader" uid="uid://08fp8m13ww0y" path="res://shaders/post_process_display.gdshader" id="3_vtaks"]
 [ext_resource type="Shader" uid="uid://bkursefjrnxxu" path="res://shaders/cursor.gdshader" id="4_lbhrr"]
 [ext_resource type="Script" uid="uid://ct53yaqlb2t0q" path="res://scripts/cursor_viewport.gd" id="4_p57ef"]
+[ext_resource type="Shader" uid="uid://cwf354mnds7kt" path="res://shaders/post_process.gdshader" id="6_vtaks"]
+[ext_resource type="Script" uid="uid://dlp1v8ffxm652" path="res://scripts/post_process.gd" id="7_kvpfn"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_gee14"]
+size = Vector2(2, 2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kvpfn"]
+viewport_path = NodePath("WorldViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0tnpc"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_vtaks")
+shader_parameter/scene_texture = SubResource("ViewportTexture_kvpfn")
+
+[sub_resource type="QuadMesh" id="QuadMesh_0tnpc"]
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vtaks"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_vtaks")
+shader_parameter/gridmap_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/FOG_DEPTH = 50.0
+shader_parameter/FOG_COLOR = Color(0.2, 0.2, 0.2, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p57ef"]
 render_priority = 0
 shader = ExtResource("4_lbhrr")
-shader_parameter/color = Color(0.714, 0.22, 1, 0.588235)
-shader_parameter/edge_color = Color(0.795819, 0.00210023, 0.970486, 0.85098)
+shader_parameter/color = Color(0.653568, 0.502815, 0, 0.588235)
+shader_parameter/edge_color = Color(0.813883, 0.388112, 0, 0.85098)
 shader_parameter/edge_width = 0.1
 
 [sub_resource type="QuadMesh" id="QuadMesh_p57ef"]
@@ -21,23 +49,48 @@ orientation = 1
 [node name="Game" type="Node3D"]
 script = ExtResource("1_u5sy4")
 
-[node name="Viewer" type="RemoteTransform3D" parent="."]
+[node name="DisplayCamera" type="Camera3D" parent="."]
+cull_mask = 524288
+script = ExtResource("2_gee14")
+
+[node name="PostProcessDisplay" type="MeshInstance3D" parent="DisplayCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
+layers = 524288
+mesh = SubResource("QuadMesh_gee14")
+surface_material_override/0 = SubResource("ShaderMaterial_0tnpc")
+
+[node name="WorldViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4293918721
+render_target_clear_mode = 1
+render_target_update_mode = 4
+script = ExtResource("2_u5sy4")
+
+[node name="Viewer" type="RemoteTransform3D" parent="WorldViewport"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.605, 0, 0)
-remote_path = NodePath("Camera3D")
+remote_path = NodePath("WorldCamera")
 script = ExtResource("1_lnu2h")
 
-[node name="Camera3D" type="Camera3D" parent="Viewer"]
+[node name="WorldCamera" type="Camera3D" parent="WorldViewport/Viewer"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 5)
-cull_mask = 1047553
+cull_mask = 1
 current = true
 size = 5.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="PostProcess" type="MeshInstance3D" parent="WorldViewport/Viewer/WorldCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
+mesh = SubResource("QuadMesh_0tnpc")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_vtaks")
+script = ExtResource("7_kvpfn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldViewport"]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0.605, 8, 0)
 shadow_enabled = true
 
-[node name="GridMap" type="GridMap" parent="."]
+[node name="GridMap" type="GridMap" parent="WorldViewport"]
 unique_name_in_owner = true
 mesh_library = ExtResource("3_iywne")
 cell_size = Vector3(1, 1, 1)
@@ -48,8 +101,8 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-light_mask = 512
-visibility_layer = 512
+light_mask = 262144
+visibility_layer = 262144
 z_index = 1
 offset_right = 1280.0
 offset_bottom = 960.0
@@ -57,13 +110,13 @@ offset_bottom = 960.0
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-canvas_cull_mask = 4294966784
+canvas_cull_mask = 4294180864
 size = Vector2i(1280, 960)
 render_target_update_mode = 4
 script = ExtResource("4_p57ef")
 
 [node name="Cursor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
-layers = 512
+layers = 262144
 sorting_offset = 10.0
 mesh = SubResource("QuadMesh_p57ef")
 skeleton = NodePath("../../..")
