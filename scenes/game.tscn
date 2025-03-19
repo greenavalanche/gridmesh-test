@@ -22,10 +22,12 @@ orientation = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u5sy4"]
 shader = ExtResource("8_0tnpc")
-shader_parameter/camera_projection = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/gridmap_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/inv_camera_projection = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shader_parameter/camera_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shader_parameter/GROUND_HEIGHT = 0.0
-shader_parameter/OPACITY = 0.33
+shader_parameter/OPACITY = 0.695
+shader_parameter/effect_radius = 5.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_p57ef"]
 viewport_path = NodePath("PostProcessingViewportContainer/PostProcessingViewport")
