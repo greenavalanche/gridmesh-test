@@ -13,10 +13,16 @@ var selected_tile_terrain: String
 
 var map: Map
 
+var maptexture: ImageTexture
+
 func _ready() -> void:
 	prepare_map()
 	cursor.position_chagned.connect(cursor_position_changed)
 	cursor_position_changed(cursor.grid_position)
+	cursor.paint.connect(paint)
+
+func paint(grid_position: Vector3i):
+	set_color(grid_position, 1.0)
 
 func cursor_position_changed(grid_position: Vector3i):
 	selected_position = grid_position
@@ -35,3 +41,6 @@ func prepare_map():
 		tile.terrain = MapEnums.MeshlibToTerrainMap[grid_map.mesh_library.get_item_name(item)]
 		#tile.terrain = MapEnums.MeshlibToTerrainMap["House"]
 		map.tiles[cell] = tile
+
+func set_color(cell: Vector3i, amount: float):
+	map.tiles[cell].color_amount = amount

@@ -1,6 +1,6 @@
 extends SubViewport
 
-@onready var main_camera: Camera3D = $"%Viewer/Camera3D"
+@onready var world_camera: Camera3D = $"%Viewer/WorldCamera"
 var _camera: Camera3D
 
 func _ready():
@@ -16,7 +16,7 @@ func _process(_delta: float) -> void:
 	update_camera()
 
 func update_camera():
-	_camera.global_transform = main_camera.global_transform
+	_camera.global_transform = world_camera.global_transform
 
 func update_size():
 	size = get_tree().root.size
