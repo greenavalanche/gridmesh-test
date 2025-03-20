@@ -9,17 +9,17 @@
 [ext_resource type="Shader" uid="uid://cwf354mnds7kt" path="res://shaders/post_process.gdshader" id="6_vtaks"]
 [ext_resource type="Script" uid="uid://dlp1v8ffxm652" path="res://scripts/post_process.gd" id="7_kvpfn"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_0tnpc"]
-flip_faces = true
-size = Vector2(2, 2)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vtaks"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gee14"]
 render_priority = 0
 shader = ExtResource("6_vtaks")
 shader_parameter/gridmap_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shader_parameter/FOG_DEPTH = 50.0
 shader_parameter/FOG_COLOR = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_0tnpc"]
+material = SubResource("ShaderMaterial_gee14")
+flip_faces = true
+size = Vector2(2, 2)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p57ef"]
 render_priority = 0
@@ -50,7 +50,6 @@ size = 5.0
 [node name="PostProcess" type="MeshInstance3D" parent="Viewer/WorldCamera"]
 mesh = SubResource("QuadMesh_0tnpc")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("ShaderMaterial_vtaks")
 script = ExtResource("7_kvpfn")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

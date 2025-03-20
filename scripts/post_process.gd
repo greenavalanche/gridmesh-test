@@ -7,11 +7,11 @@ var effect_texture: ImageTexture
 
 func _ready():
 	generate_effect_map()
-	get_surface_override_material(0).set_shader_parameter("effect_map", effect_texture)
+	mesh.material.set_shader_parameter("effect_map", effect_texture)
 	print("shader initialized")
 
 func _process(_delta: float) -> void:
-	get_surface_override_material(0).set_shader_parameter("gridmap_transform", grid_map.global_transform.affine_inverse())
+	mesh.material.set_shader_parameter("gridmap_transform", grid_map.global_transform.affine_inverse())
 
 func generate_effect_map():
 	var grid_extents = Rect2i(0, 0, 0, 0);
