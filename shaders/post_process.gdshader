@@ -11,6 +11,9 @@ uniform float FOG_DEPTH = 50.0;
 uniform vec3 FOG_COLOR: source_color = vec3(0.2);
 const vec3 GRAYSCALE_WEIGHTS = vec3(0.299, 0.587, 0.114);
 
+void vertex () {
+	POSITION = vec4(VERTEX.xy, 1.0, 1.0);
+}
 
 void fragment() {
 	float clip_depth = texture(depth_texture, SCREEN_UV).r;

@@ -1,7 +1,7 @@
 extends MeshInstance3D
 
 @onready var grid_map: GridMap = %GridMap
-@onready var game: Game = $"../../../.."
+@onready var game: Game = $"../../.."
 
 var effect_texture: ImageTexture
 
@@ -39,8 +39,10 @@ func generate_effect_map():
 	game.maptexture = ImageTexture.create_from_image(image)
 	
 func get_grayscale_intensity_for_tile(tile_pos: Vector3i) -> float:
-	var tile_id = grid_map.get_cell_item(tile_pos)
+	return float(tile_pos.x*tile_pos.x + tile_pos.z*tile_pos.z) / 30.0;
 	
-	match tile_id:
-		0: return 0.0  # No grayscale (Normal tile)
-		_: return 1.0
+	#var tile_id = grid_map.get_cell_item(tile_pos)
+	#
+	#match tile_id:
+		#1: return 0.0  # No grayscale (Normal tile)
+		#_: return 1.0

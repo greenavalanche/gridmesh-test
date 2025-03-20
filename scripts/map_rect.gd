@@ -3,4 +3,3 @@ extends TextureRect
 
 func _ready() -> void:
 	texture = game.maptexture
-	
