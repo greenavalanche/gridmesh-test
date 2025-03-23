@@ -24,7 +24,7 @@ func generate_effect_map():
 	var grid_size: int = (max(grid_extents.size.x, grid_extents.size.y) / 2 + 1) * 2
 		
 	var image = Image.create(grid_size, grid_size, false, Image.FORMAT_R8)
-	image.fill(Color(0, 0, 0))  # Default: No grayscale effect
+	image.fill(Color(1, 1, 1))
 	
 	for tile in grid_map.get_used_cells():
 		var grayscale_intensity = get_grayscale_intensity_for_tile(tile)
