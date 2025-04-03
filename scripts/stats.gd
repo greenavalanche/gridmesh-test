@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-@onready var manager: Manager = %Manager
 @onready var game: Game = %Game
 
 @onready var day: Label = $VBoxContainer/Day
@@ -13,8 +12,8 @@ extends CanvasLayer
 
 
 func _process(_delta: float) -> void:
-	day.text = "Day " + str(manager.get_day())
-	var t = manager.get_time()
+	day.text = "Day " + str(game.manager.get_day())
+	var t = game.manager.get_time()
 	time.text = "Time: " + t.string()
 	cursor_pos.text = "Pos: " + str(game.selected_position)
 	tile.text = "Tile: " + str(game.selected_tile)

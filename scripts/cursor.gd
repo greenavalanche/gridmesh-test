@@ -3,6 +3,7 @@ extends MeshInstance3D
 
 signal position_chagned(grid_position: Vector3i)
 signal paint(grid_position: Vector3i)
+signal plant_seed(grid_position: Vector3i)
 
 @onready var viewer: RemoteTransform3D = %Viewer
 @onready var map: GridMap = %GridMap
@@ -16,6 +17,8 @@ func _process(_delta: float) -> void:
 	update_position()
 	if Input.is_action_pressed("tile_paint"):
 		paint.emit(grid_position)
+	if Input.is_action_pressed("plant_seed"):
+		plant_seed.emit(grid_position)
 
 func update_position(force_emit: bool = false):
 	grid_position = map.local_to_map(viewer.global_position)

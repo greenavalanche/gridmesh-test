@@ -1,8 +1,6 @@
 class_name Manager
 extends Node
 
-@onready var game: Game = %Game
-
 
 @export var MINUTE_LENGTH: float = 0.1
 var HOUR_LENGTH: float = 60.0 * MINUTE_LENGTH
@@ -41,3 +39,6 @@ func get_time() -> GameTime:
 	var hour = int(daytime / HOUR_LENGTH)
 	var minute = (daytime - hour * HOUR_LENGTH) / MINUTE_LENGTH
 	return GameTime.new(hour, minute)
+
+func get_delay(days: int, hours: int, minutes: int):
+	return float(days) * DAY_LENGTH + float(hours) * HOUR_LENGTH + float(minutes) * MINUTE_LENGTH

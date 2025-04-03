@@ -3,8 +3,9 @@ extends Node3D
 
 signal selection_changed
 
-@onready var cursor: Cursor = $SubViewportContainer/SubViewport/Cursor
+@onready var cursor: Cursor = $CursorContainer/CursorViewport/Cursor
 @onready var grid_map: GridMap = %GridMap
+@onready var manager: Manager = %Manager
 
 var selected_tile: int
 var selected_position: Vector3i
@@ -20,6 +21,7 @@ func _ready() -> void:
 	cursor.position_chagned.connect(cursor_position_changed)
 	cursor_position_changed(cursor.grid_position)
 	cursor.paint.connect(paint)
+	cursor.plant_seed.connect(spawn_plant)
 
 func paint(grid_position: Vector3i):
 	set_color(grid_position, 1.0)
@@ -44,3 +46,10 @@ func prepare_map():
 
 func set_color(cell: Vector3i, amount: float):
 	map.tiles[cell].color_amount = amount
+
+func spawn_plant(grid_position: Vector3i):
+	var plant = preload("res://resources/plants/flowers/forget_me_not.tres")
+	var plant_instance = PlantInstance.new()
+	add_child(plant_instance)
+	plant_instance.plant = plant
+	plant_instance.spawn(self, grid_position.x, grid_position.z)

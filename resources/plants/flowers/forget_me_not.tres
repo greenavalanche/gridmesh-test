@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Plant" load_steps=5 format=3 uid="uid://dmjiderhox8wp"]
+
+[ext_resource type="Script" uid="uid://grvo4q8x8faf" path="res://scripts/plant/plant.gd" id="1_dip6u"]
+[ext_resource type="Script" uid="uid://dex2kaq7e5p1k" path="res://scripts/plant/plant_stage.gd" id="2_4nxbr"]
+[ext_resource type="PackedScene" uid="uid://cemy72eersoad" path="res://blender/plants/forget_me_not.blend" id="3_4nxbr"]
+
+[sub_resource type="Resource" id="Resource_8p66a"]
+script = ExtResource("2_4nxbr")
+nutrient_usage = 1.0
+water_usage = 1.0
+duration_days = 1.0
+influence = 1.0
+scene = ExtResource("3_4nxbr")
+metadata/_custom_type_script = "uid://dex2kaq7e5p1k"
+
+[resource]
+script = ExtResource("1_dip6u")
+name = "Forget-Me-Not"
+mana_to_plant = 1.0
+stages = Array[ExtResource("2_4nxbr")]([SubResource("Resource_8p66a")])
+metadata/_custom_type_script = "uid://grvo4q8x8faf"
