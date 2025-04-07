@@ -5,7 +5,7 @@ extends RemoteTransform3D
 @export var ROTATION_FACTOR: float = 3.0
 @export_group("Zoom")
 @export var ZOOM_FACTOR: float = 5.0
-@export var ZOOM_MIN: float = 0.5
+@export var ZOOM_MIN: float = 1.0
 @export var ZOOM_MAX: float = 5.0
 
 func _process(delta: float) -> void:

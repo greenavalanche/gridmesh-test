@@ -9,10 +9,10 @@ var DAY_LENGTH: float = 24 * HOUR_LENGTH
 var time = 0.0
 
 class GameTime:
-	var hour: int
-	var minute: int
+	var hour: float
+	var minute: float
 	
-	func _init(h: int = 0, m: int = 0):
+	func _init(h: float = 0.0, m: float = 0.0):
 		hour = h
 		minute = m
 	

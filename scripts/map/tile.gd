@@ -1,8 +1,14 @@
 extends Node
-class_name Tile
+class_name MapTile
 
 @export var terrain: MapEnums.TerrainType
-var color_amount: float = 1.0
+var plant: Plant = null
 
 func terrain_name() -> String:
 	return MapEnums.TerrainType.find_key(terrain)
+
+func color_amount() -> float:
+	if not plant:
+		return 0.0
+	else:
+		return plant.get_influence()
