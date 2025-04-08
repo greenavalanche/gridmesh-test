@@ -3,9 +3,11 @@ extends Node3D
 
 signal selection_changed
 
-@onready var cursor: Cursor = $CursorContainer/CursorViewport/Cursor
+@onready var cursor: Cursor = $UIContainer/UIViewport/Cursor
 @onready var grid_map: GridMap = %GridMap
 @onready var manager: Manager = %Manager
+@onready var world_camera: Camera3D = %WorldCamera
+
 
 var selected_tile: MapTile
 var selected_position: Vector3i
@@ -34,21 +36,15 @@ func prepare_map():
 	map = Map.new()
 	for cell in grid_map.get_used_cells():
 		var item = grid_map.get_cell_item(cell)
-		var tile = MapTile.new()
+		var tile = MapTile.new(self, Vector2(cell.x, cell.z))
 		tile.terrain = MapEnums.MeshlibToTerrainMap[grid_map.mesh_library.get_item_name(item)]
 		#tile.terrain = MapEnums.MeshlibToTerrainMap["House"]
 		map.tiles[cell] = tile
 
 
 func spawn_plant(grid_position: Vector3i) -> bool:
-	var tile: MapTile = selected_tile
-	if tile.plant:
-		return false
-	
-	print("spawn plant on %s at %s" % [tile.terrain_name(), grid_position])
-	
-	var plant_resource = preload("res://resources/plants/flowers/forget_me_not.tres")
-	var plant = Plant.new(self, plant_resource, grid_position.x, grid_position.z)
-	tile.plant = plant
-	add_child(plant)
+	var tile: MapTile = map.tiles[grid_position]
+	var plant = tile.spawn_plant()
+	if plant:
+		add_child(plant)
 	return true
