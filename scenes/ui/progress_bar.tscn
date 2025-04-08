@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxi3wb4u7d28t"]
+
+[ext_resource type="Script" uid="uid://c0lcwkag3sx6r" path="res://scripts/ui/progress_bar.gd" id="1_aqhu8"]
+[ext_resource type="Script" uid="uid://bkeef5s06fjcc" path="res://scripts/ui/progress_bar_mesh.gd" id="2_ydmtc"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ydmtc"]
+
+[node name="ProgressBar" type="Node3D"]
+script = ExtResource("1_aqhu8")
+
+[node name="ProgressBarMesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-09, -0.5, 0, 0.1, -2.18557e-08, 0, 0, 0, 0.1, 0, 0, 0)
+layers = 262144
+mesh = SubResource("CapsuleMesh_ydmtc")
+script = ExtResource("2_ydmtc")

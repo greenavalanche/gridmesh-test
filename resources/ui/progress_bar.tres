@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b36d0wnkdfstk"]
+
+[ext_resource type="Shader" uid="uid://ley6gnpmgefp" path="res://shaders/ui/progress_bar.gdshader" id="1_eitwf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_eitwf")
+shader_parameter/progress = 0.0
+shader_parameter/FILL_COLOR = Color(0.54946, 0.684867, 0.34506, 1)
+shader_parameter/BG_COLOR = Color(0.1, 0.1, 0.1, 0.25098)

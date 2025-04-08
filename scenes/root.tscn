@@ -29,6 +29,12 @@ offset_right = 274.0
 offset_bottom = 262.0
 size_flags_horizontal = 0
 
+[node name="FPS" type="Label" parent="Stats/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("4_j287u")
+text = "FPS"
+
 [node name="Day" type="Label" parent="Stats/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -47,12 +53,6 @@ size_flags_horizontal = 0
 theme = ExtResource("4_j287u")
 text = "CursorPos"
 
-[node name="Tile" type="Label" parent="Stats/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme = ExtResource("4_j287u")
-text = "SelectedTile"
-
 [node name="TileName" type="Label" parent="Stats/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -64,6 +64,12 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("4_j287u")
 text = "TerrainName"
+
+[node name="TilePlant" type="Label" parent="Stats/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("4_j287u")
+text = "TilePlant"
 
 [node name="MapRect" type="TextureRect" parent="Stats"]
 visible = false

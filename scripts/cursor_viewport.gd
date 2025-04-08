@@ -1,6 +1,6 @@
 extends SubViewport
 
-@onready var world_camera: Camera3D = $"%Viewer/WorldCamera"
+@onready var world_camera: Camera3D = %WorldCamera
 var _camera: Camera3D
 
 func _ready():

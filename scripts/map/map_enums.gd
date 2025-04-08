@@ -14,3 +14,9 @@ const MeshlibToTerrainMap = {
 	"Turn": TerrainType.ROAD,
 	"Lawn": TerrainType.GROUND,
 }
+
+enum PlantType { FORGET_ME_NOT, }
+
+const Plants = {
+	PlantType.FORGET_ME_NOT: preload("res://resources/plants/flowers/forget_me_not.tres")
+}

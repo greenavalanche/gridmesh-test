@@ -3,15 +3,15 @@ extends MeshInstance3D
 @onready var grid_map: GridMap = %GridMap
 @onready var game: Game = $"../../.."
 
-var effect_texture: ImageTexture
-
 func _ready():
 	generate_effect_map()
-	mesh.material.set_shader_parameter("effect_map", effect_texture)
+	mesh.material.set_shader_parameter("effect_map", game.maptexture)
 	print("shader initialized")
 
 func _process(_delta: float) -> void:
 	mesh.material.set_shader_parameter("gridmap_transform", grid_map.global_transform.affine_inverse())
+	generate_effect_map()
+	mesh.material.set_shader_parameter("effect_map", game.maptexture)
 
 func generate_effect_map():
 	var grid_extents = Rect2i(0, 0, 0, 0);
@@ -35,11 +35,13 @@ func generate_effect_map():
 		image.set_pixel(x, y, Color(grayscale_intensity, grayscale_intensity, grayscale_intensity))
 	
 	# Convert to a texture and update the material
-	effect_texture = ImageTexture.create_from_image(image)
 	game.maptexture = ImageTexture.create_from_image(image)
 	
 func get_grayscale_intensity_for_tile(tile_pos: Vector3i) -> float:
-	return float(tile_pos.x*tile_pos.x + tile_pos.z*tile_pos.z) / 30.0;
+	if not game.map:
+		return 1.0
+	var tile = game.map.tiles[tile_pos]
+	return 1.0 - tile.color_amount()
 	
 	#var tile_id = grid_map.get_cell_item(tile_pos)
 	#
