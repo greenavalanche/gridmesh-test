@@ -11,11 +11,11 @@ func _init(_game: Game, _position: Vector2) -> void:
 	game = _game
 	grid_position = _position
 
-func spawn_plant():
+func spawn_plant(plant_type: MapEnums.PlantType):
 	if plant:
 		return false
 	print("spawn plant on %s at %s" % [terrain_name(), grid_position])
-	var plant_resource = preload("res://resources/plants/flowers/forget_me_not.tres")
+	var plant_resource = MapEnums.Plants[plant_type]
 	plant = Plant.new(game, plant_resource, grid_position.x, grid_position.y)
 	return plant
 

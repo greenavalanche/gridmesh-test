@@ -44,7 +44,7 @@ func prepare_map():
 
 func spawn_plant(grid_position: Vector3i) -> bool:
 	var tile: MapTile = map.tiles[grid_position]
-	var plant = tile.spawn_plant()
+	var plant = tile.spawn_plant(MapEnums.PlantType.FORGET_ME_NOT)
 	if plant:
 		add_child(plant)
 	return true

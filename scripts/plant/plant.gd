@@ -26,7 +26,7 @@ func _exit_tree() -> void:
 	if current_stage:
 		current_stage.teardown()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var progress: float = get_stage_progress()
 	current_stage.node.scale = Vector3(progress, progress, progress)
 	progress_bar.set_progress(progress)
