@@ -19,7 +19,7 @@ func _ready() -> void:
 	mesh.set_progress(progress)
 
 func _process(_delta: float) -> void:
-	look_at(camera.global_position, Vector3.UP, true)
+	rotation = camera.global_rotation
 
 func set_progress(_progress: float):
 	progress = _progress
