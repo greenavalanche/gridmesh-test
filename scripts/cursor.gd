@@ -2,7 +2,7 @@ class_name Cursor
 extends MeshInstance3D
 
 signal position_chagned(grid_position: Vector3i)
-signal plant_seed(grid_position: Vector3i)
+signal tile_action(grid_position: Vector3i)
 
 @onready var viewer: RemoteTransform3D = %Viewer
 @onready var map: GridMap = %GridMap
@@ -14,8 +14,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	update_position()
-	if Input.is_action_just_pressed("plant_seed"):
-		plant_seed.emit(grid_position)
+	if Input.is_action_just_pressed("tile_action"):
+		tile_action.emit(grid_position)
 
 func update_position(force_emit: bool = false):
 	grid_position = map.local_to_map(viewer.global_position)
@@ -23,9 +23,6 @@ func update_position(force_emit: bool = false):
 	if previous_grid_position != grid_position or force_emit:
 		previous_grid_position = grid_position
 		position_chagned.emit(grid_position)
-
-func get_cell(_grid_position: Vector3i):
-	return map.get_cell
 
 func get_tile(_grid_position: Vector3i):
 	return map.get_cell_item(_grid_position)

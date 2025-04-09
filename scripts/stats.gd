@@ -10,6 +10,9 @@ extends CanvasLayer
 @onready var terrain_name: Label = $VBoxContainer/TerrainName
 @onready var tile_plant: Label = $VBoxContainer/TilePlant
 
+@onready var mana: Label = $HBoxContainer/Mana
+@onready var water: Label = $HBoxContainer/Water
+@onready var influence: Label = $HBoxContainer/Influence
 
 
 func _process(_delta: float) -> void:
@@ -29,3 +32,6 @@ func _process(_delta: float) -> void:
 			plant.num_stages(),
 			floor(plant.get_stage_progress() * 100),
 		]
+	
+	mana.text = "Mana: %0.2f" % game.manager.mana.value
+	water.text = "Water: %0.2f" % game.manager.water.value
