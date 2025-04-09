@@ -72,9 +72,12 @@ theme = ExtResource("4_j287u")
 text = "TilePlant"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Stats"]
-offset_top = 912.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
 offset_right = 1280.0
-offset_bottom = 960.0
+grow_vertical = 0
 
 [node name="Mana" type="Label" parent="Stats/HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
