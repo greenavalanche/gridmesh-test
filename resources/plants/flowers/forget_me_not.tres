@@ -20,4 +20,5 @@ script = ExtResource("1_4nxbr")
 name = "Forget Me Not"
 mana_to_plant = 1.0
 stages = Array[ExtResource("2_8p66a")]([SubResource("Resource_8p66a")])
+plantable_on = Array[int]([0])
 metadata/_custom_type_script = "uid://grvo4q8x8faf"

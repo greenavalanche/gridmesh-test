@@ -14,9 +14,8 @@ extends CanvasLayer
 
 func _process(_delta: float) -> void:
 	fps.text = "FPS %0.2f" % (1.0/_delta)
-	day.text = "Day " + str(game.manager.get_day())
-	var t = game.manager.get_time()
-	time.text = "Time: " + t.string()
+	day.text = "Day " + str(game.manager.time.get_day())
+	time.text = "Time: " + game.manager.time.time_string()
 	cursor_pos.text = "Pos: " + str(game.selected_position)
 	tile_name.text = "Tile name: " + game.selected_tile_name
 	terrain_name.text = "Terrain: " + game.selected_tile_terrain

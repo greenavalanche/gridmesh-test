@@ -14,8 +14,11 @@ func _init(_game: Game, _position: Vector2) -> void:
 func spawn_plant(plant_type: MapEnums.PlantType):
 	if plant:
 		return false
-	print("spawn plant on %s at %s" % [terrain_name(), grid_position])
+	print("Planting %s on %s at %s" % [MapEnums.PlantType.find_key(plant_type), terrain_name(), grid_position])
 	var plant_resource = MapEnums.Plants[plant_type]
+	if terrain not in plant_resource.plantable_on:
+		print("Can't plant %s on %s"  % [plant_resource.name, terrain_name()])
+		return false
 	plant = Plant.new(game, plant_resource, grid_position.x, grid_position.y)
 	return plant
 

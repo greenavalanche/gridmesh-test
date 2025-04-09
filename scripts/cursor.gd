@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	update_position()
-	if Input.is_action_pressed("plant_seed"):
+	if Input.is_action_just_pressed("plant_seed"):
 		plant_seed.emit(grid_position)
 
 func update_position(force_emit: bool = false):
