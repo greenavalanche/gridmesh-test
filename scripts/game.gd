@@ -22,7 +22,7 @@ func _ready() -> void:
 	prepare_map()
 	cursor.position_chagned.connect(cursor_position_changed)
 	cursor_position_changed(cursor.grid_position)
-	cursor.plant_seed.connect(spawn_plant)
+	cursor.tile_action.connect(tile_action)
 
 
 func cursor_position_changed(grid_position: Vector3i):
@@ -42,9 +42,12 @@ func prepare_map():
 		map.tiles[cell] = tile
 
 
-func spawn_plant(grid_position: Vector3i) -> bool:
+func tile_action(grid_position: Vector3i) -> void:
 	var tile: MapTile = map.tiles[grid_position]
-	var plant = tile.spawn_plant(MapEnums.PlantType.FORGET_ME_NOT)
-	if plant:
-		add_child(plant)
-	return true
+	if tile.plant:
+		if tile.plant.needs_water():
+			tile.water_plant()
+	else:
+		var plant = tile.spawn_plant(MapEnums.PlantType.FORGET_ME_NOT)
+		if plant:
+			add_child(plant)

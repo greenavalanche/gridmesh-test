@@ -15,12 +15,27 @@ func spawn_plant(plant_type: MapEnums.PlantType):
 	if plant:
 		return false
 	print("Planting %s on %s at %s" % [MapEnums.PlantType.find_key(plant_type), terrain_name(), grid_position])
-	var plant_resource = MapEnums.Plants[plant_type]
+	var plant_resource: PlantResource = MapEnums.Plants[plant_type]
 	if terrain not in plant_resource.plantable_on:
 		print("Can't plant %s on %s"  % [plant_resource.name, terrain_name()])
 		return false
+	if not game.manager.mana.use(plant_resource.mana_to_plant):
+		print("Too little mana: %s (required %s)" % [game.manager.mana.value, plant_resource.mana_to_plant])
+		return false
 	plant = Plant.new(game, plant_resource, grid_position.x, grid_position.y)
 	return plant
+
+func water_plant() -> bool:
+	if not plant:
+		print("No plant to water")
+		return false
+	if not plant.needs_water():
+		print("%s already watered." % plant)
+	print("Watering %s" % plant)
+	if not game.manager.water.use(plant.current_stage.water_needed()):
+		print("Not enough water: %s (required: %s)", [game.manager.water.value, plant.current_stage.water_needed()])
+	plant.water()
+	return true
 
 func terrain_name() -> String:
 	return MapEnums.TerrainType.find_key(terrain)

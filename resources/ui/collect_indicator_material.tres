@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c8p1ijwomwtho"]
+
+[ext_resource type="Shader" uid="uid://802wuag7bbv1" path="res://shaders/ui/collect_particle.gdshader" id="1_yic2q"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_yic2q")
+shader_parameter/color = Color(0.61598, 0.686951, 1, 1)
+shader_parameter/edge_color = Color(0, 0.472132, 0.81277, 0)
+shader_parameter/edge_width = 0.5

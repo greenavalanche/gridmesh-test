@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c11act6kc3j37"]
+
+[ext_resource type="Shader" uid="uid://802wuag7bbv1" path="res://shaders/ui/collect_particle.gdshader" id="1_tl35g"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_tl35g")
+shader_parameter/color = Color(0.999968, 0.455941, 0.433121, 1)
+shader_parameter/edge_color = Color(0.534561, 0.0253994, 3.36915e-07, 0)
+shader_parameter/edge_width = 0.6

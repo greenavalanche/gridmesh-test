@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb265jfkb7qxd"]
+
+[ext_resource type="ArrayMesh" uid="uid://cpfv4h1q67b0k" path="res://resources/ui/input_indicator.res" id="1_whil1"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o3ij3"]
+lifetime_randomness = 0.81
+emission_shape_offset = Vector3(0, 0.1, 0)
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.1
+turbulence_noise_strength = 0.1
+turbulence_influence_min = 0.01
+turbulence_influence_max = 0.05
+turbulence_initial_displacement_min = 1.49012e-06
+turbulence_initial_displacement_max = 1.49012e-06
+
+[node name="Indicator" type="GPUParticles3D"]
+layers = 262144
+amount = 16
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_o3ij3")
+draw_pass_1 = ExtResource("1_whil1")
