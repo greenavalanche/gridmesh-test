@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=3 uid="uid://cchvxkg2ll85s"]
+
+[ext_resource type="Script" uid="uid://calorfx5k7kab" path="res://scripts/player.gd" id="1_68wq4"]
+[ext_resource type="Shader" uid="uid://3x4rqbs14svh" path="res://shaders/player.gdshader" id="1_8137b"]
+[ext_resource type="Shader" uid="uid://b56xe30tv605n" path="res://shaders/player_particle.gdshader" id="2_uit1f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uit1f"]
+render_priority = 0
+shader = ExtResource("1_8137b")
+shader_parameter/PULSING_AMPLITUDE = 0.05
+shader_parameter/NOISE_AMOUNT = 0.01
+shader_parameter/INSIDE_COLOR = Color(0, 1, 0.7, 0)
+shader_parameter/EDGE_COLOR = Color(0, 0.9, 0.3, 1)
+shader_parameter/pulsing_amount = 1.0
+shader_parameter/power = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_68wq4"]
+material = SubResource("ShaderMaterial_uit1f")
+rings = 128
+
+[sub_resource type="Curve" id="Curve_uit1f"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 1, Vector2(1, 0.5), 0.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_68wq4"]
+curve = SubResource("Curve_uit1f")
+
+[sub_resource type="Curve" id="Curve_sou8n"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_j8g21"]
+curve = SubResource("Curve_sou8n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_68wq4"]
+emission_shape_scale = Vector3(0.5, 0.5, 0.5)
+emission_shape = 2
+emission_sphere_radius = 1.0
+orbit_velocity_min = -0.0999999
+orbit_velocity_max = 0.1
+orbit_velocity_curve = SubResource("CurveTexture_68wq4")
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_j8g21")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sou8n"]
+render_priority = 0
+shader = ExtResource("2_uit1f")
+shader_parameter/INSIDE_COLOR = Color(0.5, 1, 0.7, 0.7)
+shader_parameter/EDGE_COLOR = Color(0, 1, 0, 0)
+shader_parameter/FALLOFF = 0.3
+shader_parameter/power = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_j8g21"]
+material = SubResource("ShaderMaterial_sou8n")
+radius = 0.025
+height = 0.05
+radial_segments = 16
+rings = 8
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_68wq4")
+
+[node name="Glow" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+layers = 262145
+mesh = SubResource("SphereMesh_68wq4")
+
+[node name="Dust" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+layers = 262145
+amount = 32
+lifetime = 16.0
+process_material = SubResource("ParticleProcessMaterial_68wq4")
+draw_pass_1 = SubResource("SphereMesh_j8g21")

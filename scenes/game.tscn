@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bwwpn3lxnp6yb"]
+[gd_scene load_steps=15 format=3 uid="uid://bwwpn3lxnp6yb"]
 
 [ext_resource type="Script" uid="uid://bq4gksq3ftoer" path="res://scripts/viewer.gd" id="1_lnu2h"]
 [ext_resource type="Script" uid="uid://ds2rh107vworh" path="res://scripts/game.gd" id="1_u5sy4"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" uid="uid://cwf354mnds7kt" path="res://shaders/post_process.gdshader" id="6_vtaks"]
 [ext_resource type="Script" uid="uid://dlp1v8ffxm652" path="res://scripts/post_process.gd" id="7_kvpfn"]
 [ext_resource type="Script" uid="uid://c5oocnpudlvhe" path="res://scripts/manager.gd" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://cchvxkg2ll85s" path="res://scenes/player.tscn" id="10_vtaks"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vtaks"]
 render_priority = 0
@@ -26,8 +27,8 @@ size = Vector2(2, 2)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kvpfn"]
 render_priority = 0
 shader = ExtResource("4_lbhrr")
-shader_parameter/color = Color(0.653568, 0.502815, 0, 0.588235)
-shader_parameter/edge_color = Color(0.813883, 0.388112, 0, 0.85098)
+shader_parameter/color = Color(0, 0.626865, 0.377365, 0.588235)
+shader_parameter/edge_color = Color(0, 0.613017, 0.523874, 0.85098)
 shader_parameter/edge_width = 0.1
 
 [sub_resource type="QuadMesh" id="QuadMesh_p57ef"]
@@ -95,3 +96,6 @@ sorting_offset = 10.0
 mesh = SubResource("QuadMesh_p57ef")
 skeleton = NodePath("../../..")
 script = ExtResource("3_p57ef")
+
+[node name="Player" parent="." instance=ExtResource("10_vtaks")]
+unique_name_in_owner = true

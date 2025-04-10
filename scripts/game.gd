@@ -7,6 +7,7 @@ signal selection_changed
 @onready var grid_map: GridMap = %GridMap
 @onready var manager: Manager = %Manager
 @onready var world_camera: Camera3D = %WorldCamera
+@onready var player: Player = %Player
 
 
 var selected_tile: MapTile
