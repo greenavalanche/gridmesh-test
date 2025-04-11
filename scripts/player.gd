@@ -9,12 +9,23 @@ class_name Player
 @export var MIN_SCALE: float = 0.3
 @export var MAX_SCALE: float = 1.0
 
+@export var grid_position: Vector3i = Vector3i(0, 0, 0):
+	get: return grid_position
+	set (value): set_grid_position(value)
+
+func set_grid_position(_grid_position: Vector3i):
+	grid_position = _grid_position
+
+func update_position():
+	if game.grid_map:
+		position = game.grid_map.map_to_local(grid_position)
 
 func _process(_delta: float) -> void:
+	update_position()
 	var power = game.manager.mana.get_usage()
 	var _power = clamp(power, 0.01, 1.0)
 	glow.look_at(camera.global_position, Vector3.MODEL_FRONT)
-	var _scale = clamp(power, MIN_SCALE, MAX_SCALE)
+	var _scale = lerp(MIN_SCALE, MAX_SCALE, power)
 	glow.scale = Vector3(_scale, _scale, _scale)
 	dust.scale = Vector3(_scale, _scale, _scale)
 	

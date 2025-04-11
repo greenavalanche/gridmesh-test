@@ -74,6 +74,16 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
+[node name="Player" parent="." instance=ExtResource("10_vtaks")]
+unique_name_in_owner = true
+
+[node name="Cursor" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+layers = 262144
+sorting_offset = 10.0
+mesh = SubResource("QuadMesh_p57ef")
+script = ExtResource("3_p57ef")
+
 [node name="UIContainer" type="SubViewportContainer" parent="."]
 light_mask = 262144
 visibility_layer = 262144
@@ -89,13 +99,3 @@ canvas_cull_mask = 4294180864
 size = Vector2i(1280, 960)
 render_target_update_mode = 4
 script = ExtResource("4_p57ef")
-
-[node name="Cursor" type="MeshInstance3D" parent="UIContainer/UIViewport"]
-layers = 262144
-sorting_offset = 10.0
-mesh = SubResource("QuadMesh_p57ef")
-skeleton = NodePath("../../..")
-script = ExtResource("3_p57ef")
-
-[node name="Player" parent="." instance=ExtResource("10_vtaks")]
-unique_name_in_owner = true

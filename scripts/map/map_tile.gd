@@ -31,9 +31,11 @@ func water_plant() -> bool:
 		return false
 	if not plant.needs_water():
 		print("%s already watered." % plant)
+		return false
 	print("Watering %s" % plant)
 	if not game.manager.water.use(plant.current_stage.water_needed()):
-		print("Not enough water: %s (required: %s)", [game.manager.water.value, plant.current_stage.water_needed()])
+		print("Not enough water: %s (required: %s)" % [game.manager.water.value, plant.current_stage.water_needed()])
+		return false
 	plant.water()
 	return true
 

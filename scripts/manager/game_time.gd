@@ -29,5 +29,5 @@ func time_string() -> String:
 	var minute = (daytime - hour * HOUR_LENGTH) / MINUTE_LENGTH
 	return "%02d:%02d" % [hour, minute]
 
-func get_delay(days: int, hours: int, minutes: int):
+func get_delay(days: int = 0, hours: int = 0, minutes: int = 0):
 	return float(days) * DAY_LENGTH + float(hours) * HOUR_LENGTH + float(minutes) * MINUTE_LENGTH

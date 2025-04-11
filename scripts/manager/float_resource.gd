@@ -4,17 +4,17 @@ class_name FloatResource
 var __value: float
 var value: float:
 	get: return __value
-	set (value): assert(false, "Use value_set/use/add")
+	set (value): assert(false, "Use set_value/use/add")
 
 var min_value: float
 var max_value: float
 
 func _init(start_value: float, _min_value: float = 0.0, _max_value: float = INF):
-	__value = start_value
 	min_value = _min_value
 	max_value = _max_value
+	__value = min(max_value, max(min_value, start_value))
 
-func value_set(amount: float) -> void:
+func set_value(amount: float) -> void:
 	__value = amount
 
 # use the resource

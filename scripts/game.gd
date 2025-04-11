@@ -1,9 +1,9 @@
-class_name Game
 extends Node3D
+class_name Game
 
 signal selection_changed
 
-@onready var cursor: Cursor = $UIContainer/UIViewport/Cursor
+@onready var cursor: Cursor = %Cursor
 @onready var grid_map: GridMap = %GridMap
 @onready var manager: Manager = %Manager
 @onready var world_camera: Camera3D = %WorldCamera
@@ -25,6 +25,19 @@ func _ready() -> void:
 	cursor_position_changed(cursor.grid_position)
 	cursor.tile_action.connect(tile_action)
 
+func _process(delta: float) -> void:
+	calculate_influence()
+
+func calculate_influence():
+	var influence: float = manager.mana.max_value
+	var num_plants = 0
+	for ti in map.tiles:
+		var t: MapTile = map.tiles[ti]
+		if t.plant:
+			influence += t.plant.get_influence()
+			num_plants += 1
+	manager.influence.set_value(influence)
+	manager.num_plants = num_plants
 
 func cursor_position_changed(grid_position: Vector3i):
 	selected_position = grid_position
@@ -52,3 +65,17 @@ func tile_action(grid_position: Vector3i) -> void:
 		var plant = tile.spawn_plant(MapEnums.PlantType.FORGET_ME_NOT)
 		if plant:
 			add_child(plant)
+
+func get_selected_tile_distance() -> float:
+	return get_tile_distance(cursor.grid_position)
+
+func get_selected_tile_influence() -> float:
+	return get_tile_influence(cursor.grid_position)
+
+func get_tile_distance(grid_position: Vector3i) -> float:
+	var d: Vector3 = Vector3(abs(grid_position - player.grid_position))
+	return sqrt(d.x*d.x + d.z * d.z)
+
+func get_tile_influence(grid_position: Vector3i) -> float:
+	var d = get_tile_distance(grid_position)
+	return manager.influence.value / (1.0 + d*d)

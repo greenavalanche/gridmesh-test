@@ -71,6 +71,18 @@ size_flags_horizontal = 0
 theme = ExtResource("4_j287u")
 text = "TilePlant"
 
+[node name="TileDistance" type="Label" parent="Stats/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("4_j287u")
+text = "Tile Distance"
+
+[node name="TileInfluence" type="Label" parent="Stats/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("4_j287u")
+text = "Distance"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Stats"]
 anchors_preset = 2
 anchor_top = 1.0
@@ -84,6 +96,7 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("4_j287u")
+theme_override_colors/font_color = Color(3.08037e-06, 0.755475, 0.649787, 1)
 theme_override_font_sizes/font_size = 32
 text = "Mana"
 
@@ -92,6 +105,7 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("4_j287u")
+theme_override_colors/font_color = Color(0.271792, 0.630638, 1, 1)
 theme_override_font_sizes/font_size = 32
 text = "Water"
 
@@ -100,6 +114,7 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("4_j287u")
+theme_override_colors/font_color = Color(0.67924, 0.371656, 1, 1)
 theme_override_font_sizes/font_size = 32
 text = "Influence"
 
