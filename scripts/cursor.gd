@@ -48,9 +48,15 @@ func update_position(force_emit: bool = false):
 		if game.get_tile_influence(p) > 1.0:
 			new_position = p
 			break
-	
+
 	global_transform.origin = map.map_to_local(grid_position)
 	if new_position != grid_position or force_emit:
+		var old_pos_distance = projected_position.distance_squared_to(grid_position)
+		var new_pos_distance = projected_position.distance_squared_to(new_position)
+
+		if not force_emit and new_pos_distance > old_pos_distance:
+			return
+
 		grid_position = new_position
 		position_chagned.emit(grid_position)
 

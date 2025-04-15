@@ -27,7 +27,7 @@ size = Vector2(2, 2)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kvpfn"]
 render_priority = 0
 shader = ExtResource("4_lbhrr")
-shader_parameter/color = Color(0, 0.626865, 0.377365, 0.588235)
+shader_parameter/color = Color(0, 0.63, 0.378, 0.0627451)
 shader_parameter/edge_color = Color(0, 0.613017, 0.523874, 0.85098)
 shader_parameter/edge_width = 0.1
 
