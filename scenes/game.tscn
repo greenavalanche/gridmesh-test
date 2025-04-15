@@ -50,9 +50,10 @@ script = ExtResource("1_lnu2h")
 
 [node name="WorldCamera" type="Camera3D" parent="Viewer"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 5)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.2, 6.67)
 cull_mask = 1
 current = true
+fov = 30.0
 size = 5.0
 
 [node name="PostProcess" type="MeshInstance3D" parent="Viewer/WorldCamera"]

@@ -7,7 +7,9 @@ func _ready():
 	get_tree().root.size_changed.connect(update_size)
 	update_size()
 
-	_camera = Camera3D.new()
+	_camera = world_camera.duplicate()
+	for n in _camera.get_children():
+		_camera.remove_child(n)
 	add_child(_camera)
 	_camera.cull_mask = canvas_cull_mask
 	#_camera.current = true

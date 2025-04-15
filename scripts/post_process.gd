@@ -36,15 +36,9 @@ func generate_effect_map():
 	
 	# Convert to a texture and update the material
 	game.maptexture = ImageTexture.create_from_image(image)
-	
+
 func get_grayscale_intensity_for_tile(tile_pos: Vector3i) -> float:
 	if not game.map:
 		return 1.0
 	var tile = game.map.tiles[tile_pos]
 	return 1.0 - tile.color_amount()
-	
-	#var tile_id = grid_map.get_cell_item(tile_pos)
-	#
-	#match tile_id:
-		#1: return 0.0  # No grayscale (Normal tile)
-		#_: return 1.0
