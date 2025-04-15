@@ -10,6 +10,7 @@ uniform mat4 gridmap_transform;
 //uniform float FOG_DEPTH = 50.0;
 uniform float MAX_FOG_AMOUNT = 1.0;
 uniform vec3 FOG_COLOR: source_color = vec3(0.2);
+uniform float GRAYSCALE_DIMMING = 2.0;
 const vec3 GRAYSCALE_WEIGHTS = vec3(0.299, 0.587, 0.114);
 
 void vertex () {
@@ -40,7 +41,7 @@ void fragment() {
 
 		vec3 color = texture(screen_texture, SCREEN_UV).rgb;
 
-		vec3 grayscale = vec3(dot(color, GRAYSCALE_WEIGHTS));
+		vec3 grayscale = vec3(dot(color, GRAYSCALE_WEIGHTS / GRAYSCALE_DIMMING));
 
 		vec3 desaturated_color = mix(color, grayscale, effect_intensity);
 

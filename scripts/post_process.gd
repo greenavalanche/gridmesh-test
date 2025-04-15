@@ -6,6 +6,7 @@ extends MeshInstance3D
 @export var MIN_UNFOG_INFLUENCE: float = 0.1
 @export_range(0.0, 1.0) var MAX_FOG_AMOUNT: float = 1.0
 @export_color_no_alpha var FOG_COLOR = Color(0, 0, 0)
+@export_range(0.5, 10.0) var GRAYSCALE_DIMMING: float = 2.0;
 
 func _ready():
 	update_shader()
@@ -16,6 +17,7 @@ func _process(_delta: float) -> void:
 func update_shader():
 	mesh.material.set_shader_parameter("MAX_FOG_AMOUNT", MAX_FOG_AMOUNT)
 	mesh.material.set_shader_parameter("FOG_COLOR", FOG_COLOR)
+	mesh.material.set_shader_parameter("GRAYSCALE_DIMMING", GRAYSCALE_DIMMING)
 	mesh.material.set_shader_parameter("gridmap_transform", grid_map.global_transform.affine_inverse())
 	generate_effect_map()
 	mesh.material.set_shader_parameter("effect_map", game.maptexture)
