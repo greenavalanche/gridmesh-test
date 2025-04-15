@@ -15,8 +15,7 @@
 render_priority = 0
 shader = ExtResource("6_vtaks")
 shader_parameter/gridmap_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
-shader_parameter/FOG_DEPTH = 10.0
-shader_parameter/MAX_FOG_AMOUNT = 0.9
+shader_parameter/MAX_FOG_AMOUNT = 1.0
 shader_parameter/FOG_COLOR = Color(0.2, 0.2, 0.2, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_0tnpc"]

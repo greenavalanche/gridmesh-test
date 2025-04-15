@@ -7,8 +7,8 @@ uniform sampler2D depth_texture : hint_depth_texture, filter_linear_mipmap;
 uniform sampler2D effect_map;
 uniform mat4 gridmap_transform;
 
-uniform float FOG_DEPTH = 50.0;
-uniform float MAX_FOG_AMOUNT = 0.99;
+//uniform float FOG_DEPTH = 50.0;
+uniform float MAX_FOG_AMOUNT = 1.0;
 uniform vec3 FOG_COLOR: source_color = vec3(0.2);
 const vec3 GRAYSCALE_WEIGHTS = vec3(0.299, 0.587, 0.114);
 
@@ -33,24 +33,23 @@ void fragment() {
 		vec4 grid_pos = gridmap_transform * world_pos;
 		vec2 texture_size = vec2(textureSize(effect_map, 0));
 
-		//vec2 effect_uv = ((floor(grid_pos.xz) + vec2(0.5)) + texture_size / 2.0) / texture_size;
 		vec2 effect_uv = (grid_pos.xz + texture_size / 2.0) / texture_size;
 
 		float effect_intensity = texture(effect_map, effect_uv).r;
-		//effect_intensity *= sin((clip_pos.x + clip_pos.y * TIME * 10.0);
+		float fog_intensity = texture(effect_map, effect_uv).g;
 
 		vec3 color = texture(screen_texture, SCREEN_UV).rgb;
 
 		vec3 grayscale = vec3(dot(color, GRAYSCALE_WEIGHTS));
 
-		float fog_extent = smoothstep(0.0, FOG_DEPTH, linear_depth);
-
-		vec3 fog_color = mix(grayscale, FOG_COLOR, MAX_FOG_AMOUNT);
-		grayscale = mix(grayscale, fog_color, fog_extent);
-
 		vec3 desaturated_color = mix(color, grayscale, effect_intensity);
 
-		ALBEDO = desaturated_color;
+		float fog_amount = fog_intensity * MAX_FOG_AMOUNT;
+
+
+		vec3 out_color = mix(desaturated_color, FOG_COLOR, fog_amount);
+
+		ALBEDO = out_color;
 
 	}
 
