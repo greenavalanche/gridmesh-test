@@ -1,25 +1,49 @@
-[gd_resource type="Resource" script_class="PlantResource" load_steps=5 format=3 uid="uid://dmjiderhox8wp"]
+[gd_resource type="Resource" script_class="PlantResource" load_steps=9 format=3 uid="uid://dmjiderhox8wp"]
 
 [ext_resource type="Script" uid="uid://grvo4q8x8faf" path="res://scripts/plant/plant_resource.gd" id="1_4nxbr"]
 [ext_resource type="Script" uid="uid://dex2kaq7e5p1k" path="res://scripts/plant/plant_stage_resource.gd" id="2_8p66a"]
-[ext_resource type="PackedScene" uid="uid://cemy72eersoad" path="res://blender/plants/forget_me_not.blend" id="3_4nxbr"]
+[ext_resource type="PackedScene" uid="uid://bwpjt0qg23jqr" path="res://blender/plants/fmn2-stage1.glb" id="3_1iuyq"]
+[ext_resource type="PackedScene" uid="uid://dyguqeff0gqdv" path="res://blender/plants/fmn2-stage2.glb" id="4_kqcmh"]
+[ext_resource type="PackedScene" uid="uid://83octummwjqa" path="res://blender/plants/fmn2-stage3.glb" id="5_4ueg5"]
 
 [sub_resource type="Resource" id="Resource_8p66a"]
 script = ExtResource("2_8p66a")
 nutrient_usage = 1.0
+water_usage = 0.33
+duration_days = 0.0
+duration_hours = 2.0
+duration_minutes = 0.0
+influence = 0.1
+scene = ExtResource("3_1iuyq")
+metadata/_custom_type_script = "uid://dex2kaq7e5p1k"
+
+[sub_resource type="Resource" id="Resource_jyw6e"]
+script = ExtResource("2_8p66a")
+nutrient_usage = 1.0
 water_usage = 1.0
 duration_days = 0.0
-duration_hours = 1.0
+duration_hours = 8.0
+duration_minutes = 0.0
+influence = 0.33
+scene = ExtResource("4_kqcmh")
+metadata/_custom_type_script = "uid://dex2kaq7e5p1k"
+
+[sub_resource type="Resource" id="Resource_4vs65"]
+script = ExtResource("2_8p66a")
+nutrient_usage = 1.0
+water_usage = 3.0
+duration_days = 1.0
+duration_hours = 0.0
 duration_minutes = 0.0
 influence = 1.0
-scene = ExtResource("3_4nxbr")
+scene = ExtResource("5_4ueg5")
 metadata/_custom_type_script = "uid://dex2kaq7e5p1k"
 
 [resource]
 script = ExtResource("1_4nxbr")
 name = "Forget Me Not"
 mana_to_plant = 1.0
-stages = Array[ExtResource("2_8p66a")]([SubResource("Resource_8p66a")])
+stages = Array[ExtResource("2_8p66a")]([SubResource("Resource_8p66a"), SubResource("Resource_jyw6e"), SubResource("Resource_4vs65")])
 plantable_on = Array[int]([0])
 progress_bar_height = 1.0
 metadata/_custom_type_script = "uid://grvo4q8x8faf"

@@ -17,9 +17,6 @@ func _init(_game: Game, _resource: PlantStageResource):
 	duration = game.manager.time.get_delay(resource.duration_days, resource.duration_hours, resource.duration_minutes)
 	node = resource.scene.instantiate()
 
-func teardown() -> void:
-	node.queue_free()
-
 func start_growth() -> void:
 	start_time = game.manager.time.time
 
