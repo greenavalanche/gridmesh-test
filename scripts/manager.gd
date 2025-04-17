@@ -21,6 +21,17 @@ func _process(delta: float) -> void:
 	time.flow(delta)
 	replenish_mana(delta)
 	replenish_water(delta)
+	process_cheat_codes(delta)
+
+func process_cheat_codes(delta):
+	if Input.is_action_pressed("cheat_water"):
+		water.add(delta)
+	if Input.is_action_pressed("cheat_mana"):
+		mana.add(delta)
+	if Input.is_action_pressed("cheat_influence"):
+		influence.add(delta)
+	if Input.is_action_pressed("cheat_time"):
+		time.flow(delta*7)
 
 func replenish_mana(delta: float):
 	mana.add(delta / time.get_delay(1) * influence.value * MANA_PER_INFLUENCE_PER_DAY)
