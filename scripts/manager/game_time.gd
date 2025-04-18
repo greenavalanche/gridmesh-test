@@ -10,12 +10,13 @@ var hour: float
 var minute: float
 var day: int:
 	get=get_day
+var speed: float = 1.0
 
 func _init(_time: float):
 	time = _time
 
 func flow(delta: float):
-	time += delta
+	time += delta * speed
 
 func get_day():
 	return __get_days() + 1
@@ -24,7 +25,7 @@ func __get_days() -> int:
 	return int(time / DAY_LENGTH)
 
 func time_string() -> String:
-	var daytime: float = time - __get_days()
+	var daytime: float = time - __get_days() * DAY_LENGTH
 	var hour = int(daytime / HOUR_LENGTH)
 	var minute = (daytime - hour * HOUR_LENGTH) / MINUTE_LENGTH
 	return "%02d:%02d" % [hour, minute]

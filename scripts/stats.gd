@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var fps: Label = $VBoxContainer/FPS
 @onready var day: Label = $VBoxContainer/Day
 @onready var time: Label = $VBoxContainer/Time
+@onready var time_speed: Label = $VBoxContainer/TimeSpeed
 @onready var cursor_pos: Label = $VBoxContainer/CursorPos
 @onready var tile_name: Label = $VBoxContainer/TileName
 @onready var terrain_name: Label = $VBoxContainer/TerrainName
@@ -22,6 +23,7 @@ func _process(_delta: float) -> void:
 	fps.text = "FPS %0.2f" % (1.0/_delta)
 	day.text = "Day " + str(game.manager.time.get_day())
 	time.text = "Time: " + game.manager.time.time_string()
+	time_speed.text = "Time Speed: " + str(game.manager.time.speed)
 	cursor_pos.text = "Pos: " + str(game.selected_position)
 	tile_name.text = "Tile name: " + game.selected_tile_name
 	terrain_name.text = "Terrain: " + game.selected_tile_terrain
