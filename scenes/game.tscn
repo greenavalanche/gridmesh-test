@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwwpn3lxnp6yb"]
+[gd_scene format=3 uid="uid://bwwpn3lxnp6yb"]
 
 [ext_resource type="Script" uid="uid://bq4gksq3ftoer" path="res://scripts/viewer.gd" id="1_lnu2h"]
 [ext_resource type="Script" uid="uid://ds2rh107vworh" path="res://scripts/game.gd" id="1_u5sy4"]
@@ -18,6 +18,8 @@ shader_parameter/gridmap_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1,
 shader_parameter/MAX_FOG_AMOUNT = 1.0
 shader_parameter/FOG_COLOR = Color(0.2, 0.2, 0.2, 1)
 shader_parameter/GRAYSCALE_DIMMING = 5.0
+shader_parameter/RES = Vector2(320, 200)
+shader_parameter/PIXELLIZE = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_0tnpc"]
 material = SubResource("ShaderMaterial_vtaks")
@@ -35,20 +37,20 @@ shader_parameter/edge_width = 0.1
 material = SubResource("ShaderMaterial_kvpfn")
 orientation = 1
 
-[node name="Game" type="Node3D"]
+[node name="Game" type="Node3D" unique_id=4710542]
 script = ExtResource("1_u5sy4")
 
-[node name="Manager" type="Node" parent="."]
+[node name="Manager" type="Node" parent="." unique_id=794214069]
 unique_name_in_owner = true
 script = ExtResource("9_0tnpc")
 
-[node name="Viewer" type="RemoteTransform3D" parent="."]
+[node name="Viewer" type="RemoteTransform3D" parent="." unique_id=951723662]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.605, 0, 0)
 remote_path = NodePath("WorldCamera")
 script = ExtResource("1_lnu2h")
 
-[node name="WorldCamera" type="Camera3D" parent="Viewer"]
+[node name="WorldCamera" type="Camera3D" parent="Viewer" unique_id=45308213]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.2, 6.67)
 cull_mask = 1
@@ -56,16 +58,16 @@ current = true
 fov = 30.0
 size = 5.0
 
-[node name="PostProcess" type="MeshInstance3D" parent="Viewer/WorldCamera"]
+[node name="PostProcess" type="MeshInstance3D" parent="Viewer/WorldCamera" unique_id=2142218412]
 mesh = SubResource("QuadMesh_0tnpc")
 skeleton = NodePath("")
 script = ExtResource("7_kvpfn")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=543781197]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0.605, 8, 0)
 shadow_enabled = true
 
-[node name="GridMap" type="GridMap" parent="."]
+[node name="GridMap" type="GridMap" parent="." unique_id=871199689]
 unique_name_in_owner = true
 mesh_library = ExtResource("3_iywne")
 cell_size = Vector3(1, 1, 1)
@@ -75,17 +77,17 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="Player" parent="." instance=ExtResource("10_vtaks")]
+[node name="Player" parent="." unique_id=28545368 instance=ExtResource("10_vtaks")]
 unique_name_in_owner = true
 
-[node name="Cursor" type="MeshInstance3D" parent="."]
+[node name="Cursor" type="MeshInstance3D" parent="." unique_id=1603026428]
 unique_name_in_owner = true
 layers = 262144
 sorting_offset = 10.0
 mesh = SubResource("QuadMesh_p57ef")
 script = ExtResource("3_p57ef")
 
-[node name="UIContainer" type="SubViewportContainer" parent="."]
+[node name="UIContainer" type="SubViewportContainer" parent="." unique_id=2078323385]
 light_mask = 262144
 visibility_layer = 262144
 z_index = 1
@@ -93,7 +95,7 @@ offset_right = 1280.0
 offset_bottom = 960.0
 metadata/_edit_use_anchors_ = true
 
-[node name="UIViewport" type="SubViewport" parent="UIContainer"]
+[node name="UIViewport" type="SubViewport" parent="UIContainer" unique_id=1367956641]
 transparent_bg = true
 handle_input_locally = false
 canvas_cull_mask = 4294180864

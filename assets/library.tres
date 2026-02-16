@@ -1,4 +1,4 @@
-[gd_resource type="MeshLibrary" load_steps=29 format=4 uid="uid://t6hthv6x6pfc"]
+[gd_resource type="MeshLibrary" format=4 uid="uid://t6hthv6x6pfc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ev3c"]
 resource_name = "concrete"

@@ -11,6 +11,8 @@ uniform mat4 gridmap_transform;
 uniform float MAX_FOG_AMOUNT = 1.0;
 uniform vec3 FOG_COLOR: source_color = vec3(0.2);
 uniform float GRAYSCALE_DIMMING = 2.0;
+uniform vec2 RES = vec2(320.0, 200.0);
+uniform bool PIXELLIZE = false;
 const vec3 GRAYSCALE_WEIGHTS = vec3(0.299, 0.587, 0.114);
 
 void vertex () {
@@ -18,11 +20,18 @@ void vertex () {
 }
 
 void fragment() {
-	float clip_depth = texture(depth_texture, SCREEN_UV).r;
+	vec2 screen_pixel;
+	if (PIXELLIZE) {
+		screen_pixel = (round(SCREEN_UV * RES) + 0.5) / RES;
+	} else {
+		screen_pixel = SCREEN_UV;
+	}
+	
+	float clip_depth = texture(depth_texture, screen_pixel).r;
 	if (clip_depth < 0.0001) {
 		ALBEDO = FOG_COLOR;
 	} else {
-		vec4 clip_pos = vec4(SCREEN_UV * 2.0 - 1.0, clip_depth, 1.0);
+		vec4 clip_pos = vec4(screen_pixel * 2.0 - 1.0, clip_depth, 1.0);
 
 		vec4 view_pos = INV_PROJECTION_MATRIX * clip_pos;
 		view_pos /= view_pos.w;
@@ -39,7 +48,8 @@ void fragment() {
 		float effect_intensity = texture(effect_map, effect_uv).r;
 		float fog_intensity = texture(effect_map, effect_uv).g;
 
-		vec3 color = texture(screen_texture, SCREEN_UV).rgb;
+		vec3 color = textureLod(screen_texture, screen_pixel, 0.0).rgb;
+		//vec3 color = texture(screen_texture, screen_pixel).rgb;
 
 		vec3 grayscale = vec3(dot(color, GRAYSCALE_WEIGHTS / GRAYSCALE_DIMMING));
 
